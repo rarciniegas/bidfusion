@@ -1,0 +1,20 @@
+[15-Mar-2024 14:41:55 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: Expression #5 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'cs6400_spr18_team044.Bid.user_name' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by in /Applications/MAMP/htdocs/rarci/bidfusion/auction_results.php:44
+Stack trace:
+#0 /Applications/MAMP/htdocs/rarci/bidfusion/auction_results.php(44): mysqli_query(Object(mysqli), 'SELECT Item.ite...')
+#1 {main}
+  thrown in /Applications/MAMP/htdocs/rarci/bidfusion/auction_results.php on line 44
+[15-Mar-2024 15:19:09 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: Expression #5 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'bid_fusion.Bid.user_name' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by in /Applications/MAMP/htdocs/rarci/bidfusion/auction_results.php:44
+Stack trace:
+#0 /Applications/MAMP/htdocs/rarci/bidfusion/auction_results.php(44): mysqli_query(Object(mysqli), 'SELECT Item.ite...')
+#1 {main}
+  thrown in /Applications/MAMP/htdocs/rarci/bidfusion/auction_results.php on line 44
+[15-Mar-2024 15:19:28 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: Expression #5 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'bid_fusion.Bid.user_name' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by in /Applications/MAMP/htdocs/rarci/bidfusion/auction_results.php:44
+Stack trace:
+#0 /Applications/MAMP/htdocs/rarci/bidfusion/auction_results.php(44): mysqli_query(Object(mysqli), 'SELECT Item.ite...')
+#1 {main}
+  thrown in /Applications/MAMP/htdocs/rarci/bidfusion/auction_results.php on line 44
+[15-Mar-2024 15:22:06 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: Expression #5 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'bid_fusion.Bid.user_name' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by in /Applications/MAMP/htdocs/rarci/bidfusion/auction_results.php:44
+Stack trace:
+#0 /Applications/MAMP/htdocs/rarci/bidfusion/auction_results.php(44): mysqli_query(Object(mysqli), 'SELECT Item.ite...')
+#1 {main}
+  thrown in /Applications/MAMP/htdocs/rarci/bidfusion/auction_results.php on line 44
