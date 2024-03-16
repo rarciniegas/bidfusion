@@ -1,6 +1,5 @@
-
 -- CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
-CREATE USER IF NOT EXISTS bidfusionUser@localhost IDENTIFIED BY 'bidfusion123';
+CREATE USER IF NOT EXISTS bidfusionUser@localhost IDENTIFIED BY 'B!dFus!on123';
 
 DROP DATABASE IF EXISTS `bid_fusion`; 
 SET default_storage_engine=InnoDB;
@@ -291,7 +290,7 @@ INSERT INTO `User` (`userID`, `user_name`, `first_name`, `last_name`, `password`
 --
 DROP TABLE IF EXISTS `rt`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`gatechUser`@`localhost` SQL SECURITY DEFINER VIEW `rt`  AS  select `rating`.`user_name` AS `user_name`,count(`rating`.`user_name`) AS `rated` from `rating` group by `rating`.`user_name` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`bidfusionUser`@`localhost` SQL SECURITY DEFINER VIEW `rt`  AS  select `rating`.`user_name` AS `user_name`,count(`rating`.`user_name`) AS `rated` from `rating` group by `rating`.`user_name` ;
 
 -- --------------------------------------------------------
 
@@ -300,7 +299,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`gatechUser`@`localhost` SQL SECURITY DEFINER
 --
 DROP TABLE IF EXISTS `sold1`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`gatechUser`@`localhost` SQL SECURITY DEFINER VIEW `sold1`  AS  select `bid`.`itemID` AS `itemID`,`bid`.`user_name` AS `user_name`,max(`bid`.`bid_amount`) AS `sold_for` from `bid` group by `bid`.`itemID` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`bidfusionUser`@`localhost` SQL SECURITY DEFINER VIEW `sold1`  AS  select `bid`.`itemID` AS `itemID`,`bid`.`user_name` AS `user_name`,max(`bid`.`bid_amount`) AS `sold_for` from `bid` group by `bid`.`itemID` ;
 
 -- --------------------------------------------------------
 
@@ -309,7 +308,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`gatechUser`@`localhost` SQL SECURITY DEFINER
 --
 DROP TABLE IF EXISTS `sold2`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`gatechUser`@`localhost` SQL SECURITY DEFINER VIEW `sold2`  AS  select `sold1`.`itemID` AS `itemID`,`sold1`.`user_name` AS `user_name`,`sold1`.`sold_for` AS `sold_for` from (`sold1` join `item`) where ((`sold1`.`itemID` = `item`.`itemID`) and (`sold1`.`sold_for` >= `item`.`reserve`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`bidfusionUser`@`localhost` SQL SECURITY DEFINER VIEW `sold2`  AS  select `sold1`.`itemID` AS `itemID`,`sold1`.`user_name` AS `user_name`,`sold1`.`sold_for` AS `sold_for` from (`sold1` join `item`) where ((`sold1`.`itemID` = `item`.`itemID`) and (`sold1`.`sold_for` >= `item`.`reserve`)) ;
 
 -- --------------------------------------------------------
 
@@ -318,7 +317,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`gatechUser`@`localhost` SQL SECURITY DEFINER
 --
 DROP TABLE IF EXISTS `sold3`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`gatechUser`@`localhost` SQL SECURITY DEFINER VIEW `sold3`  AS  select `item`.`user_name` AS `user_name`,count(`item`.`user_name`) AS `sold` from (`item` join `sold2` on((`item`.`itemID` = `sold2`.`itemID`))) group by `item`.`user_name` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`bidfusionUser`@`localhost` SQL SECURITY DEFINER VIEW `sold3`  AS  select `item`.`user_name` AS `user_name`,count(`item`.`user_name`) AS `sold` from (`item` join `sold2` on((`item`.`itemID` = `sold2`.`itemID`))) group by `item`.`user_name` ;
 
 -- --------------------------------------------------------
 
@@ -327,7 +326,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`gatechUser`@`localhost` SQL SECURITY DEFINER
 --
 DROP TABLE IF EXISTS `ur1`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`gatechUser`@`localhost` SQL SECURITY DEFINER VIEW `ur1`  AS  select `user`.`user_name` AS `user_name`,count(`item`.`itemID`) AS `listed` from (`user` left join `item` on((`user`.`user_name` = `item`.`user_name`))) group by `user`.`user_name` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`bidfusionUser`@`localhost` SQL SECURITY DEFINER VIEW `ur1`  AS  select `user`.`user_name` AS `user_name`,count(`item`.`itemID`) AS `listed` from (`user` left join `item` on((`user`.`user_name` = `item`.`user_name`))) group by `user`.`user_name` ;
 
 -- --------------------------------------------------------
 
@@ -336,7 +335,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`gatechUser`@`localhost` SQL SECURITY DEFINER
 --
 DROP TABLE IF EXISTS `ur2`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`gatechUser`@`localhost` SQL SECURITY DEFINER VIEW `ur2`  AS  select `ur1`.`user_name` AS `user_name`,`ur1`.`listed` AS `listed`,count(`sold2`.`user_name`) AS `purchased` from (`ur1` left join `sold2` on((`ur1`.`user_name` = `sold2`.`user_name`))) group by `ur1`.`user_name` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`bidfusionUser`@`localhost` SQL SECURITY DEFINER VIEW `ur2`  AS  select `ur1`.`user_name` AS `user_name`,`ur1`.`listed` AS `listed`,count(`sold2`.`user_name`) AS `purchased` from (`ur1` left join `sold2` on((`ur1`.`user_name` = `sold2`.`user_name`))) group by `ur1`.`user_name` ;
 
 -- --------------------------------------------------------
 
@@ -345,7 +344,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`gatechUser`@`localhost` SQL SECURITY DEFINER
 --
 DROP TABLE IF EXISTS `ur3`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`gatechUser`@`localhost` SQL SECURITY DEFINER VIEW `ur3`  AS  select `ur2`.`user_name` AS `user_name`,`ur2`.`listed` AS `listed`,`sold3`.`sold` AS `sold`,`ur2`.`purchased` AS `purchased` from (`ur2` left join `sold3` on((`ur2`.`user_name` = `sold3`.`user_name`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`bidfusionUser`@`localhost` SQL SECURITY DEFINER VIEW `ur3`  AS  select `ur2`.`user_name` AS `user_name`,`ur2`.`listed` AS `listed`,`sold3`.`sold` AS `sold`,`ur2`.`purchased` AS `purchased` from (`ur2` left join `sold3` on((`ur2`.`user_name` = `sold3`.`user_name`))) ;
 
 --
 -- Indexes for dumped tables

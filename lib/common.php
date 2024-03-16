@@ -40,7 +40,7 @@ if($showQueries){
 define('DB_HOST', "localhost");
 define('DB_PORT', "3306");
 define('DB_USER', "bidfusionUser");
-define('DB_PASS', "bidfusion123");
+define('DB_PASS', "B!dFus!on123");
 define('DB_SCHEMA', "bid_fusion");
 
 
