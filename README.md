@@ -1,4 +1,4 @@
-**Welcome to Bid Fusion**
+##Welcome to Bid Fusion**
 
 Bid Fusion is a straightforward online auction platform developed using PHP and SQL database. This project aims to provide users with a seamless auction experience, catering to both Regular Users and Administrative Users.
 
